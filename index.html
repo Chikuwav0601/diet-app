@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#e56c8b" />
+    <title>diet-app | 見た目の変化を記録する</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header>
+        <p class="eyebrow">DIET APP</p>
+        <h1>今日の積み重ね</h1>
+        <p id="today-label" class="muted"></p>
+      </header>
+
+      <section id="home-view" class="view active">
+        <article class="card photo-card">
+          <div><p class="section-label">LOOK</p><h2>今日の写真</h2><p class="muted" id="photo-message">変化を、数字ではなく見た目で残そう。</p></div>
+          <label class="primary-button">写真を記録する<input id="photo-input" type="file" accept="image/*" capture="environment" hidden /></label>
+        </article>
+
+        <section class="card">
+          <div class="section-heading"><div><p class="section-label">MOVE</p><h2>今日の運動</h2></div><button class="text-button" data-open="settings-view">編集</button></div>
+          <div id="video-list" class="item-list"></div>
+        </section>
+
+        <section class="card">
+          <div class="section-heading"><div><p class="section-label">HABIT</p><h2>今日の習慣</h2></div><button class="text-button" data-open="settings-view">編集</button></div>
+          <div id="task-list" class="item-list"></div>
+        </section>
+      </section>
+
+      <section id="review-view" class="view">
+        <header class="view-header"><p class="eyebrow">REVIEW</p><h2>振り返る</h2><p class="muted">続けた日々を、変化と一緒に見る。</p></header>
+        <section class="card">
+          <h2>写真の比較</h2>
+          <div class="compare-controls"><label>左<input id="compare-left" type="date" /></label><label>右<input id="compare-right" type="date" /></label></div>
+          <div id="comparison" class="comparison"></div>
+        </section>
+        <section class="card"><h2>継続カレンダー</h2><div id="calendar" class="calendar"></div><p class="legend"><span class="dot photo"></span>写真 <span class="dot activity"></span>運動または習慣</p></section>
+      </section>
+
+      <section id="settings-view" class="view">
+        <header class="view-header"><p class="eyebrow">SETTINGS</p><h2>続ける内容を決める</h2></header>
+        <section class="card"><h2>重点的に引き締めたい部位</h2><div id="areas" class="chips"></div></section>
+        <section class="card"><h2>運動動画</h2><p class="muted">動画名とURLを登録できます。曜日を選ばなければ毎日表示します。</p>
+          <form id="video-form" class="add-form"><input id="video-name" required placeholder="例：10分腹筋トレーニング" /><input id="video-url" type="url" placeholder="YouTubeのURL（任意）" /><div id="weekday-picker" class="weekday-picker"></div><button class="primary-button" type="submit">動画を追加</button></form>
+          <div id="saved-videos" class="saved-list"></div>
+        </section>
+        <section class="card"><h2>毎日の習慣</h2><p class="muted">例から選ぶか、自分で追加できます。</p><div id="suggested-tasks" class="chips"></div>
+          <form id="task-form" class="inline-form"><input id="task-name" required placeholder="自分で決める習慣" /><button class="secondary-button" type="submit">追加</button></form><div id="saved-tasks" class="saved-list"></div>
+        </section>
+        <section class="card privacy"><h2>写真について</h2><p>写真はこのブラウザの端末内にだけ保存されます。サーバーへのアップロードや公開は行いません。</p></section>
+      </section>
+    </main>
+    <nav class="bottom-nav"><button class="nav-button active" data-view="home-view">今日</button><button class="nav-button" data-view="review-view">振り返り</button><button class="nav-button" data-view="settings-view">設定</button></nav>
+    <div id="toast" role="status"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
